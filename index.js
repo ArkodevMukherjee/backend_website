@@ -64,11 +64,10 @@ app.post("/userAdd", async (req, res) => {
   // Email Unique
   else {
     const user = User.findOne({ email: email });
-    console.log(user)
+    console.log(user);
     if (user.username != undefined) {
       res.status(400).json({ body: "User already exits" });
-    } 
-    else {
+    } else {
       let salt = await bcrypt.genSalt(10);
       let hashedPassword = await bcrypt.hash(password, salt);
 
